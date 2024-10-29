@@ -25,7 +25,7 @@ The telecommunications (telecom) sector in India is rapidly changing, with more 
 | `data_used`  | The amount of data used by the customer.                     |
 | `churn`    | Binary variable indicating whether the customer has churned or not (1 = churned, 0 = not churned).|
 
-In this project, I train a Neural Network to predict churn of customers. 
+In this project, I train a Neural Network in Pytorch to predict churn of customers. 
 ##Hyperparameter Tuning:
 
 - num_epoch: 5000
