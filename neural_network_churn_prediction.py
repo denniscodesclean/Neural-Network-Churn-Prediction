@@ -6,9 +6,6 @@ drive.mount('/content/drive')
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import RidgeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, confusion_matrix
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -159,6 +156,6 @@ with torch.no_grad():
         pred.extend(predicted.squeeze().tolist())
         actual.extend(batch_y.squeeze().tolist())
 
-# Now you can calculate accuracy or other metrics using predictions and actuals
+# Calculate accuracy
 accuracy = sum([p == a for p, a in zip(pred, actual)]) / len(actual)
 print(f"Test Accuracy: {accuracy:.4f}")
