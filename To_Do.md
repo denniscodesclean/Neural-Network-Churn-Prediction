@@ -20,6 +20,6 @@ Prevent Overfitting
 - [x] Kaiming Initialization (2024-10-31: Completed)
 * Set the initial weights of layers in deep neural networks. Help prevent vanishing or exploding gradients.
 - [ ] Batch Normalization:
-* Batch normalization is a technique that normalizes the output of a layer for each mini-batch, which helps stabilize the learning process. By reducing internal covariate shifts, batch normalization allows for faster training and can enable the use of higher learning rates. It also introduces a slight regularization effect, potentially reducing the need for other regularization techniques.
+* In deep networks, as the parameters of the network change during training, the distributions of the inputs to each layer also change. This phenomenon is known as internal covariate shift. Batch normalization reduces this shift by normalizing the inputs to a layer, which helps maintain a consistent mean and variance, thus stabling the learning process.
 
 
