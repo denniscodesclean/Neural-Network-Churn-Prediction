@@ -19,16 +19,7 @@ In this project, I train a Neural Network in Pytorch to predict churn of custome
   * Adjust hyperparameters like batch_size, epochs, learning rate, and momentum.
 * Testing
   * 2024-10-29: 78% 
-* Next Step:
-  * Add a validation set.
-  * Monitor tendency of overfitting from step above, and add more overfitting control.
-    * Considering early stoppage.
-    * Weight Decay in optimizer, ex. optim.SGD(model.parameters(), lr = 0.0004, weight_decay = 1e-4)
-    * Add a dropout layer after activation function, ex. nn.Dropout(p=0.3)
-  * Considering other optimizers.
-  * Considering more feature engineering:
-    * How to properly deal with timestamp (seansonality?)
-    * How to include category features like state that has ~40 distinct values. 
+
 
 ## Context
 The telecommunications (telecom) sector in India is rapidly changing, with more and more telecom businesses being created and many customers deciding to switch between providers. "Churn" refers to the process where customers or subscribers stop using a company's services or products. Understanding the factors that influence keeping a customer as a client in predicting churn is crucial for telecom companies to enhance their service quality and customer satisfaction. As the data scientist on this project, you aim to explore the intricate dynamics of customer behavior and demographics in the Indian telecom sector in predicting customer churn, utilizing two comprehensive datasets from four major telecom partners: Airtel, Reliance Jio, Vodafone, and BSNL:
