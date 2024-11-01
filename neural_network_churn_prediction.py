@@ -10,6 +10,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 import torch.optim as optim
+import torch.nn.init as init
 from torchmetrics import Accuracy
 import matplotlib.pyplot as plt
 import numpy as np
@@ -84,6 +85,14 @@ class ChurnPredictNN(nn.Module):
         self.leaky_lrelu4 = nn.LeakyReLU(0.01)
         self.fc5 = nn.Linear(32,1)
         self.sigmoid = nn.Sigmoid() # activation for output
+
+        # Apply Kaiming He Initialization, configuring the initial weights for each layer to avoid vanishing or exploding gradients.
+        init.kaiming_uniform_(self.fc1.weight)
+        init.kaiming_uniform_(self.fc2.weight)
+        init.kaiming_uniform_(self.fc3.weight)
+        init.kaiming_uniform_(self.fc4.weight)
+        init.kaiming_uniform_(self.fc5.weight, nonlinearity='sigmoid')
+
     def forward(self, x):
         x = self.fc1(x)
         x = self.leaky_relu1(x)
