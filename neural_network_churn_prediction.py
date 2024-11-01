@@ -8,8 +8,9 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
-import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
+import torch.optim as optim
+from torchmetrics import Accuracy
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -36,7 +37,7 @@ churn_df = churn_df.drop(columns=["state", 'customer_id', 'pincode','registratio
 
 # Train_test_split
 X = churn_df.drop(columns='churn')
-y = churn_df[['churn']]
+y = churn_df['churn']
 X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     stratify = y,
                                                     test_size = 0.2,
@@ -66,6 +67,8 @@ y_test_tensor = torch.tensor(y_test.values).float()
 # Batching
 train_dataset = TensorDataset(X_train_tensor, y_train_tensor)
 train_loader = DataLoader(train_dataset, batch_size=80, shuffle=True)
+test_loader = TensorDataset(X_test_tensor, y_test_tensor)
+test_loader = DataLoader(train_dataset, batch_size=200, shuffle=True)
 
 # Define Neural Network Structure
 class ChurnPredictNN(nn.Module):
@@ -109,7 +112,7 @@ for epoch in range(num_epoch):
         model.zero_grad() # clear previous gradients
         # Forward Pass
         output = model(batch_X)
-        loss = criterion(output, batch_y)
+        loss = criterion(output, batch_y.view(-1,1))
 
         # Backward Pass & Optimize
         loss.backward()
@@ -140,22 +143,19 @@ plt.show()
 torch.save(model.state_dict(), 'model_weights.pth')
 # Set model to evaludation mode
 model.eval()
-# Evaludate on Testing set
-pred = []
-actual = []
 
+# Set up bianry accuracy metric
+acc = Accuracy(task='binary')
+
+# Evaludate on Testing set
 with torch.no_grad():
     for batch_X, batch_y in test_loader:
         # Forward pass to get predictions
         outputs = model(batch_X)
-
-        # Convert the output to binary class (0 or 1) based on a threshold
+        # Convert the output to binary class
         predicted = (outputs >= 0.5).float()
-
-        # Append predictions and actuals to lists for later evaluation
-        pred.extend(predicted.squeeze().tolist())
-        actual.extend(batch_y.squeeze().tolist())
+        acc(predicted, batch_y.view(-1,1))
 
 # Calculate accuracy
-accuracy = sum([p == a for p, a in zip(pred, actual)]) / len(actual)
+accuracy = acc.compute()
 print(f"Test Accuracy: {accuracy:.4f}")
