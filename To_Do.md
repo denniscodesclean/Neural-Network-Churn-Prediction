@@ -21,5 +21,6 @@ Prevent Overfitting
 * Set the initial weights of layers in deep neural networks. Help prevent vanishing or exploding gradients.
 - [ ] Batch Normalization:
 * In deep networks, as the parameters of the network change during training, the distributions of the inputs to each layer also change. This phenomenon is known as internal covariate shift. Batch normalization reduces this shift by normalizing the inputs to a layer, which helps maintain a consistent mean and variance, thus stabling the learning process.
+* Enabling higher learning rate, thus faster converge. Becuase it reduces the risk of having extreme gradients during training, which can be exacerbated by high learning rates.
 
 
