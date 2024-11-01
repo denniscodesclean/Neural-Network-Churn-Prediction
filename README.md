@@ -21,8 +21,11 @@ In this project, I train a Neural Network in Pytorch to predict churn of custome
   * 2024-10-29: 78% 
 * Next Step:
   * Add a validation set.
-  * Considering early stoppage.
-  * Considering other optimizer.
+  * Monitor tendency of overfitting from step above, and add more overfitting control.
+    * Considering early stoppage.
+    * Weight Decay in optimizer, ex. optim.SGD(model.parameters(), lr = 0.0004, weight_decay = 1e-4)
+    * Add a dropout layer after activation function, ex. nn.Dropout(p=0.3)
+  * Considering other optimizers.
   * Considering more feature engineering:
     * How to properly deal with timestamp (seansonality?)
     * How to include category features like state that has ~40 distinct values. 
