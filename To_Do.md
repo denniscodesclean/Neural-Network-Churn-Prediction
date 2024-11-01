@@ -1,4 +1,5 @@
-#To-Do List
+# To-Do List
+* This file documents the features plan to be added to main py file. I will provide update for each bullet points once implemented.
 ## Feature Engineering
 * How to properly deal with timestamp (seansonality?)
 * How to include category features like state that has ~40 distinct values. 
