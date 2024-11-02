@@ -15,7 +15,9 @@ Overfit the model first, then address overfitting.
 Prevent Overfitting
 - [ ] Considering early stoppage.
 - [ ] Weight Decay in optimizer, ex. optim.SGD(model.parameters(), lr = 0.0004, weight_decay = 1e-4)
+* Applies a small penalty to the weights in the network during training.
 - [ ] Add a dropout layer after activation function, ex. nn.Dropout(p=0.3)
+* Randomly sets a specified percentage of neurons to zero in the network during each training iteration.
 ## Model Initialization and Normalization Techniques
 - [x] Kaiming Initialization (2024-10-31: Completed)
 * Set the initial weights of layers in deep neural networks. Help prevent vanishing or exploding gradients.
