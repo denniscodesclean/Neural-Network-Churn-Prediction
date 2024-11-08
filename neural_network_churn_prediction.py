@@ -68,8 +68,8 @@ y_test_tensor = torch.tensor(y_test.values).float()
 # Batching
 train_dataset = TensorDataset(X_train_tensor, y_train_tensor)
 train_loader = DataLoader(train_dataset, batch_size=80, shuffle=True)
-test_loader = TensorDataset(X_test_tensor, y_test_tensor)
-test_loader = DataLoader(train_dataset, batch_size=200, shuffle=True)
+test_dataset = TensorDataset(X_test_tensor, y_test_tensor)
+test_dataset = DataLoader(test_dataset, batch_size=200, shuffle=True)
 
 # Define Neural Network Structure
 class ChurnPredictNN(nn.Module):
